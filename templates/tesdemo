@@ -1,0 +1,52 @@
+# test1.html (Valid Sederhana)
+<html>
+<body>
+    <h1>Hello World</h1>
+</body>
+</html>
+
+# test2.html (Valid Nested)
+<html>
+<body>
+
+    <div>
+
+        <h1>Judul</h1>
+
+        <p>Paragraf</p>
+
+    </div>
+
+</body>
+</html>
+
+# test3.html (Invalid - Missing Closing Tag)
+<html>
+<body>
+
+<div>
+
+<p>Hello World</p>
+
+</body>
+</html>
+
+# test4.html (Invalid - Salah Nested)
+<html>
+
+<body>
+
+<div>
+
+<p>
+
+Hello
+
+</div>
+
+</p>
+
+</body>
+
+</html>
+
