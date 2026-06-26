@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,282 +23,238 @@
         </div>
     </div>
 
-    <form method="POST" enctype="multipart/form-data">
+    <div class="dashboard-layout">
 
-        <div class="card">
+        <div class="top-grid">
 
-            <h2>Input HTML</h2>
+            <div>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="card">
+                        <h2>Input HTML</h2>
+                        <textarea name="html">{{ html_input }}</textarea>
+                        <br><br>
+                        <input type="file" name="html_file">
+                        <br><br>
+                        <button type="submit">
+                            Validasi HTML
+                        </button>
+                    </div>
+                </form>
 
-            <textarea name="html">{{ html_input }}</textarea>
+                {% if result %}
+                <div class="stats-grid" style="margin-top: 20px;">
+                    <div class="stat-card">
+                        <h3>{{ stats.nodes }}</h3>
+                        <p>Total Node</p>
+                    </div>
 
-            <br><br>
+                    <div class="stat-card">
+                        <h3>{{ stats.leaf }}</h3>
+                        <p>Leaf Node</p>
+                    </div>
 
-            <input type="file" name="html_file">
+                    <div class="stat-card">
+                        <h3>{{ stats.depth }}</h3>
+                        <p>Tree Depth</p>
+                    </div>
 
-            <br><br>
-
-            <button type="submit">
-                Validasi HTML
-            </button>
-
-        </div>
-
-    </form>
-
-    {% if result %}
-
-    <div class="stats-grid">
-
-        <div class="stat-card">
-            <h3>{{ stats.nodes }}</h3>
-            <p>Total Node</p>
-        </div>
-
-        <div class="stat-card">
-            <h3>{{ stats.leaf }}</h3>
-            <p>Leaf Node</p>
-        </div>
-
-        <div class="stat-card">
-            <h3>{{ stats.depth }}</h3>
-            <p>Tree Depth</p>
-        </div>
-
-        <div class="stat-card">
-            <h3>{{ stats.health_score }}</h3>
-            <p>Health Score</p>
-        </div>
-
-    </div>
-
-    <div class="card">
-
-        {% if status %}
-
-            <h2 class="result-valid">
-                ✅ {{ result }}
-            </h2>
-
-        {% else %}
-
-            <div class="error-box">
-
-                <h2>❌ HTML Tidak Valid</h2>
-
-                <p>{{ result }}</p>
-
-                {% if error_type %}
-                    <p><b>Error Type:</b> {{ error_type }}</p>
-                {% endif %}
-
-            </div>
-
-        {% endif %}
-
-    </div>
-
-    {% endif %}
-
-    {% if tree %}
-
-    <div class="stats-grid">
-
-        <div class="card">
-
-            <h2>Syntax Tree</h2>
-
-            <div class="tree-box">
-                <pre>{{ tree }}</pre>
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <h2>Visualisasi Stack (LIFO)</h2>
-
-            <div class="stack-box">
-
-                {% for step in stack_history %}
-                    <pre>{{ step }}</pre>
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="stats-grid">
-
-        <div class="card">
-
-            <h2>Traversal Tree</h2>
-
-            <h3>Preorder</h3>
-            <p>{{ preorder }}</p>
-
-            <h3>Postorder</h3>
-            <p>{{ postorder }}</p>
-
-            <h3>Level Order (BFS)</h3>
-            <p>{{ level_order }}</p>
-
-        </div>
-
-        <div class="card">
-
-            <h2>HTML Structure Summary</h2>
-
-            <p>
-                Status :
-                <b>
-                {% if status %}
-                    VALID
-                {% else %}
-                    INVALID
-                {% endif %}
-                </b>
-            </p>
-
-            <p>Total Tags : {{ stats.nodes }}</p>
-
-            <p>
-                Health Level :
-                <b>{{ stats.health_level }}</b>
-            </p>
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    style="width:{{ stats.health_score }}%;">
-
-                    {{ stats.health_score }}%
-
+                    <div class="stat-card">
+                        <h3>{{ stats.health_score }}</h3>
+                        <p>Health Score</p>
+                    </div>
                 </div>
 
+                <div class="card">
+                    {% if status %}
+                        <h2 class="result-valid">
+                            ✅ {{ result }}
+                        </h2>
+                    {% else %}
+                        <div class="error-box">
+                            <h2>❌ HTML Tidak Valid</h2>
+                            <p>{{ result }}</p>
+                            {% if error_type %}
+                                <p><b>Error Type:</b> {{ error_type }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
 
+            <div>
+                <div class="card">
+                    <h2>About Project</h2>
+                    <p>
+                        Sistem ini menggunakan struktur data
+                        <b>Stack (LIFO)</b> untuk melakukan validasi
+                        tag HTML secara otomatis dan membangun
+                        <b>Syntax Tree</b> untuk analisis struktur dokumen.
+                    </p>
+                    <br>
+                    <ul>
+                        <li>✔ HTML Validation</li>
+                        <li>✔ Stack Visualization</li>
+                        <li>✔ Syntax Tree Builder</li>
+                        <li>✔ Tree Traversal Analysis</li>
+                        <li>✔ Semantic HTML Analysis</li>
+                        <li>✔ Export Report</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Workflow System</h2>
+                    <div class="workflow">
+                        Input HTML
+                        <span>↓</span>
+                        Tokenization
+                        <span>↓</span>
+                        Stack Validation
+                        <span>↓</span>
+                        Syntax Tree
+                        <span>↓</span>
+                        Traversal Analysis
+                        <span>↓</span>
+                        Report Generation
+                    </div>
+                </div>
+            </div>
+
+        </div> {% if tree %}
+        <div class="visual-grid">
+            <div class="card">
+                <h2>Syntax Tree</h2>
+                <div class="tree-box">
+                    <pre>{{ tree }}</pre>
+                </div>
+            </div>
+
+            <div class="visual-card card"> <h2>Visualisasi Stack (LIFO)</h2>
+                <div class="stack-box">
+                    {% for step in stack_history %}
+                        <pre>{{ step }}</pre>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-    </div>
+        <div class="stats-grid">
+            <div class="card">
+                <h2>Traversal Tree</h2>
+                <h3>Preorder</h3>
+                <p>{{ preorder }}</p>
+                <h3>Postorder</h3>
+                <p>{{ postorder }}</p>
+                <h3>Level Order (BFS)</h3>
+                <p>{{ level_order }}</p>
+            </div>
 
-    <div class="card">
-
-        <h2>Tag Frequency Ranking</h2>
-
-        <table>
-
-            <tr>
-                <th>Rank</th>
-                <th>Tag</th>
-                <th>Count</th>
-            </tr>
-
-            {% for tag,count in ranking %}
-
-            <tr>
-
-                <td>{{ loop.index }}</td>
-                <td>{{ tag }}</td>
-                <td>{{ count }}</td>
-
-            </tr>
-
-            {% endfor %}
-
-        </table>
-
-    </div>
-
-    <div class="stats-grid">
-
-        <div class="card">
-
-            <h2>Semantic HTML Analysis</h2>
-
-            <h3>Semantic Tags Found</h3>
-
-            <ul>
-                {% for tag in found_semantic %}
-                    <li>{{ tag }}</li>
-                {% endfor %}
-            </ul>
-
-            <h3>Missing Semantic Tags</h3>
-
-            <ul>
-                {% for tag in missing_semantic %}
-                    <li>{{ tag }}</li>
-                {% endfor %}
-            </ul>
-
+            <div class="card">
+                <h2>HTML Structure Summary</h2>
+                <p>
+                    Status :
+                    <b>
+                    {% if status %}
+                        VALID
+                    {% else %}
+                        INVALID
+                    {% endif %}
+                    </b>
+                </p>
+                <p>Total Tags : {{ stats.nodes }}</p>
+                <p>Health Level : <b>{{ stats.health_level }}</b></p>
+                <div class="progress">
+                    <div class="progress-bar" style="width:{{ stats.health_score }}%;">
+                        {{ stats.health_score }}%
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="card">
+            <h2>Tag Frequency Ranking</h2>
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>Tag</th>
+                    <th>Count</th>
+                </tr>
+                {% for tag,count in ranking %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ tag }}</td>
+                    <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 
-            <h2>Recommendations</h2>
+        <div class="stats-grid">
+            <div class="card">
+                <h2>Semantic HTML Analysis</h2>
+                <h3>Semantic Tags Found</h3>
+                <ul>
+                    {% for tag in found_semantic %}
+                        <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Missing Semantic Tags</h3>
+                <ul>
+                    {% for tag in missing_semantic %}
+                        <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
+            <div class="card">
+                <h2>Recommendations</h2>
+                <ul>
+                    {% for item in recommendations %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Kesimpulan Analisis</h2>
             <ul>
-
-                {% for item in recommendations %}
+                {% for item in report %}
                     <li>{{ item }}</li>
                 {% endfor %}
-
             </ul>
-
         </div>
 
-    </div>
+        <div class="card">
+            <h2>Export Laporan</h2>
+            <a href="/download-report">
+                <button>📄 Download Report</button>
+            </a>
+        </div>
 
-    <div class="card">
+        <div class="card">
+            <h2>Technologies Used</h2>
+            <div class="tech-grid">
+                <div class="tech">Python</div>
+                <div class="tech">Flask</div>
+                <div class="tech">Stack</div>
+                <div class="tech">Syntax Tree</div>
+                <div class="tech">HTML</div>
+                <div class="tech">CSS</div>
+            </div>
+        </div>
+        {% endif %}
 
-        <h2>Kesimpulan Analisis</h2>
+        <footer class="footer">
+            <h3>HTML Validator System</h3>
+            <p>
+                Automatic HTML Tag Validation Using Stack Data Structure
+                and Syntax Tree Parsing Algorithm
+            </p>
+            <p>Developed by Kelompok Dedskuy-15</p>
+        </footer>
 
-        <ul>
-
-            {% for item in report %}
-                <li>{{ item }}</li>
-            {% endfor %}
-
-        </ul>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Export Laporan</h2>
-
-        <a href="/download-report">
-
-            <button>
-                📄 Download Report
-            </button>
-
-        </a>
-
-    </div>
-
-    {% endif %}
-
-    <footer class="footer">
-
-        <h3>HTML Validator System</h3>
-
-        <p>
-            Automatic HTML Tag Validation Using Stack Data Structure
-            and Syntax Tree Parsing Algorithm
-        </p>
-
-        <p>
-            Developed by Kelompok Dedskuy-15
-        </p>
-
-    </footer>
-
-</div>
+    </div> </div>
 
 </body>
 </html>
-```

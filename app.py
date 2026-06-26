@@ -140,6 +140,8 @@ def index():
             root = build_tree(tokens)
 
             tree = tree_to_text(root)
+            
+            
 
             # =========================
             # Preorder

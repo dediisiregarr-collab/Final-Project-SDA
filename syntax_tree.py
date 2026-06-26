@@ -1,6 +1,15 @@
 from stack import Stack
 from collections import deque
 
+SELF_CLOSING = {
+    "img",
+    "br",
+    "hr",
+    "input",
+    "meta",
+    "link"
+}
+
 
 class TreeNode:
     def __init__(self, tag):
@@ -136,20 +145,25 @@ def build_tree(tokens):
         # Tag pembuka
         if token.startswith("<") and not token.startswith("</"):
 
-            tag = token[1:-1]
+            tag = token[1:-1].split()[0]
 
             node = TreeNode(tag)
 
             if root is None:
+
                 root = node
 
             else:
+
                 parent = stack.peek()
 
                 if parent is not None:
                     parent.add_child(node)
 
-            stack.push(node)
+            # Self-closing tetap masuk tree
+            # tetapi tidak dimasukkan ke stack
+            if tag not in SELF_CLOSING:
+                stack.push(node)
 
         # Tag penutup
         elif token.startswith("</"):

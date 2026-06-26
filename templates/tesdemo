@@ -8,15 +8,10 @@
 # test2.html (Valid Nested)
 <html>
 <body>
-
-    <div>
-
-        <h1>Judul</h1>
-
-        <p>Paragraf</p>
-
-    </div>
-
+<div>
+<h1>Judul</h1>
+<p>Paragraf</p>
+</div>
 </body>
 </html>
 
@@ -50,3 +45,21 @@ Hello
 
 </html>
 
+# test 5.html (Atribut HTML)
+<html>
+<body>
+<div class="container">
+<p id="teks">Hello</p>
+</div>
+</body>
+</html>
+
+# test6.html (Self Closing Tag)
+<html>
+<body>
+<img src="foto.jpg">
+<br>
+<hr>
+<h1>Hello</h1>
+</body>
+</html>
